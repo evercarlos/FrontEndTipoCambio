@@ -31,7 +31,6 @@ export function configureFakeBackend() {
                             email: user.email,
                             token: 'fake-jwt-token'
                         };
-                        //console.log(user.username) // eslint-disable-line
                         resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(responseJson)) });
                     } else {
                         // else return error

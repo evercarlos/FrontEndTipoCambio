@@ -643,7 +643,6 @@ export default {
     this.flag = this.value.flag;
     this.userData = JSON.parse(localStorage.getItem('user'))
     this.idWorker = (this.userData.idWorker === null) ? 0: this.userData.idWorker
-    console.log("dd: "+this.idWorker)// eslint-disable-line
   },
   methods: {
     toggleMenu() {

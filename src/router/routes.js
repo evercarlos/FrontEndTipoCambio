@@ -70,7 +70,6 @@ export default [
         if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
           store.dispatch("auth/logOut");
         } else {
-          console.log('en reouters') // eslint-disable-line
           store.dispatch("authfack/logout");
         }
         const authRequiredOnPreviousRoute = routeFrom.matched.some((route) =>
