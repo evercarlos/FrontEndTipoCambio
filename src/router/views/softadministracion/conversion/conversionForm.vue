@@ -4,7 +4,17 @@
       <b-card no-body>
         <form action="#" @submit.prevent="saveForm">
           <b-row class="mb-2">
-            <b-col sm="12">
+            <div class="col-sm-4">
+              <label>Fecha</label>
+                <input
+                  type="date"
+                  required="true"
+                  class="form-control input-sm"
+                  v-model="fecha"
+                  @change="selectDate()"
+                />
+             </div>
+            <b-col sm="8">
               <label>Tipo Cambio</label>
               <b-form-select
                 type="select"
@@ -150,14 +160,19 @@ export default {
     }
     
     const formData = ref(JSON.parse(JSON.stringify(blankData)))
-    const dataForm = async () => {
+    const parseDate = date => {
+      const date1 = (!date || date === null) ? '' : moment(date).locale('es').format('YYYY-MM-DD')
+      return date1
+    }
+    const dataTypeChange = async () => {
+      console.log(fecha.value)// eslint-disable-line
       await store
         .dispatch('softadministracion/TIPO_CAMBIO_FIND_ALL', {
           limit: -1,
           query: '',
           page: -1,
           sortBy: 'idTipoCambio%7CDESC',
-          fecha: fecha.value,
+          fecha: parseDate(fecha.value),
         })
         .then(response => {
           if (response !== undefined) {
@@ -169,8 +184,9 @@ export default {
         })
     }
     const getData = async() => {
-      await dataForm()
       if (props.typeAction === 'edit') {
+        fecha.value = await parseDate(props.dataEdit.createdAt)
+        await dataTypeChange()
         formData.value = {
           idConversion: props.dataEdit.idConversion,
           monto: props.dataEdit.monto,
@@ -182,10 +198,15 @@ export default {
         montoConvertido.value = props.dataEdit.montoConvertido
         tipoCambio.value = props.dataEdit.tipoCambio.idTipoCambio
         venta.value = props.dataEdit.tipoCambio.venta
+      } else {
+        await dataTypeChange()
       }
     }
     getData()
 
+    const selectDate = async () => {
+      await dataTypeChange()
+    }
     const seleccionarTipoCambio = () => {
       if(tipoCambio.value !== '' && tipoCambio !== null) {
         const row = _.findWhere(optionsTipoCambio.value, { idTipoCambio: tipoCambio.value })
@@ -249,6 +270,8 @@ export default {
       venta,
       monto,
       montoConvertido,
+      selectDate,
+      parseDate,
     }
   },
   methods: {
