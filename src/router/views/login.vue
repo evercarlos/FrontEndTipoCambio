@@ -26,21 +26,16 @@
       </b-overlay>
     </b-modal>
     <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6 col-xl-5">
-        <div class="card overflow-hidden">
+      <div class="col-md-8 col-lg-6 col-xl-5 mt-4">
+        <div class="card overflow-hidden account-pages my-5 pt-0">
           <div class="bg-soft bg-primary">
             <div class="row">
-              <div class="col-8">
-                <div class="text-primary p-4">
-                  <h5 class="text-primary">Bienvenidos a cambios</h5>
-                  <p>Ingrese sus Credenciales.</p>
-                </div>
-              </div>
-              <div class="col-3 align-self-end">
+              <div class="col-12 align-self-end">
                 <img
-                  src="@/assets/images/profile-img.png"
+                  src="@/assets/images/softsalud/cambio2.png"
                   alt
                   class="img-fluid"
+                  style="width:100%"
                 />
               </div>
             </div>
@@ -50,10 +45,13 @@
               <router-link to="/">
                 <div class="avatar-md profile-user-wid mb-4">
                   <span class="avatar-title rounded-circle bg-light">
-                    <img src="@/assets/images/logo.svg" alt height="34" />
+                    <img src="@/assets/images/softsalud/cambio.png" alt height="34" />
                   </span>
                 </div>
               </router-link>
+              <div style="margin-top:-3.75%">
+                <h4 style="font-weight: bold; text-align:center">Ingrese sus Credenciales</h4>
+              </div>
             </div>
             <b-alert
               v-model="isAuthError"
@@ -68,7 +66,6 @@
             >
               {{ notification.message }}
             </div>
-
             <b-form class="p-2" @submit.prevent="tryToLogIn">
               <b-form-group
                 class="mb-3"
@@ -80,7 +77,7 @@
                   id="input-1"
                   v-model="email"
                   type="text"
-                  placeholder="Enter email"
+                  placeholder="Ingrese su Usuario"
                   :class="{ 'is-invalid': submitted && $v.email.$error }"
                 ></b-form-input>
                 <div
@@ -101,7 +98,7 @@
                   id="input-2"
                   v-model="password"
                   type="password"
-                  placeholder="Enter password"
+                  placeholder="Ingrese su contraseña"
                   :class="{ 'is-invalid': submitted && $v.password.$error }"
                 ></b-form-input>
                 <div
@@ -139,6 +136,8 @@
           </div>
           <!-- end card-body -->
         </div>
+        <br>
+        <br>
         <!-- end card -->
         <!-- end row -->
       </div>
@@ -324,9 +323,11 @@ export default {
 };
 </script>
 <style lang="scss">
-.body{
-  background-image: url('~@/assets/images/softsalud/fondo1.jpg');// bg-palmas - copia.jpg
+.bg-sofsalud{
+  background-image: url('~@/assets/images/softsalud/fondo6.jpg');// bg-palmas - copia.jpg
   background-repeat: no-repeat;
   background-position: bottom center;
+  /*background-size: 100%*/
+  height: 100vh;
 }
 </style>

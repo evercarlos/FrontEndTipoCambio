@@ -376,7 +376,7 @@ export default {
 </script>
 <style scoped>
  .card-cuant {
-  box-shadow: rgb(0 0 0 / 16%) 0px 3px 2px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px !important;
+  box-shadow: rgb(0 0 0 / 16%) 3px 5px 3px 7px, rgb(0 0 0 / 8%) 0px 0px 0px 1px !important;
   border-radius:3%;
   height: 220px!important;
   max-height: 220px !important;
