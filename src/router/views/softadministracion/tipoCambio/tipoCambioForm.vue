@@ -168,8 +168,17 @@ export default {
     }
     const formData = ref(JSON.parse(JSON.stringify(blankData)))
     const parseDate = date => {
-      const date1 = (!date || date === null) ? '' : moment(date).locale('es').format('YYYY-MM-DD')
+      const dat = date.split('T')
+      let date1;
+      if(dat.length > 0 ) {
+        date1 = `${dat[0]}T05:40:12.618+00:00`
+        date1 = (!date || date === null) ? '' : moment(date1).locale('es').format('YYYY-MM-DD')
+      } else {
+        date1 = (!date || date === null) ? '' : moment(date).locale('es').format('YYYY-MM-DD')
+      }
       return date1
+      /* const date1 = (!date || date === null) ? '' : moment(date).locale('es').format('YYYY-MM-DD')
+      return date1 */
     }
     const parseDateSave2 = date => {
       const date1 = (!date || date === null) ? '' : moment.tz(moment(String(date)).format('YYYY-MM-DD[T]HH:mm:ss'), 'America/Lima')
